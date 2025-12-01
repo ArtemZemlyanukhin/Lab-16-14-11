@@ -351,7 +351,7 @@ task_for_lab11(int size)
         printf("\n\t\tСреднее арифметическое равно == %f\n", sum / kol);
     }
 }
-// Создание массива со случайными числами
+
 double* create_random_array(int* size) {
     if (size == NULL) {
         return NULL;
@@ -387,12 +387,12 @@ double* create_d_array(double* a, int size_a, double* b, int size_b,double* c, i
     }
 
     for (int i = 0; i < size_d; i++) {
-        // Циклический доступ к элементам массивов
+        
         double ai = a[i % size_a];
         double bi = b[i % size_b];
         double ci = c[i % size_c];
 
-        // Находим максимальное значение
+        
         double max_val = ai;
         if (bi > max_val) max_val = bi;
         if (ci > max_val) max_val = ci;
@@ -403,7 +403,7 @@ double* create_d_array(double* a, int size_a, double* b, int size_b,double* c, i
     return d;
 }
 
-// Функция для выполнения задания с массивами
+
 void printf_all_arrays() {
     double* a = NULL, * b = NULL, * c = NULL, * d = NULL;
     int size_a = 0, size_b = 0, size_c = 0, size_d = 0;
@@ -436,14 +436,12 @@ void printf_all_arrays() {
         put_elements(c, size_c);
     }
 
-    // Проверяем, что все массивы созданы успешно
+    
     if (a != NULL && b != NULL && c != NULL) {
-        // Размер массива d = максимальному размеру из a, b, c
+       
         size_d = size_a;
         if (size_b > size_d) size_d = size_b;
         if (size_c > size_d) size_d = size_c;
-
-        // Увеличим размер для демонстрации циклического использования
         size_d = size_d * 2;
 
         printf("\n======================================================================\n");
@@ -451,7 +449,6 @@ void printf_all_arrays() {
         printf("Размер массива d: %d\n", size_d);
         printf("======================================================================\n");
 
-        // Создаем массив d
         d = create_d_array(a, size_a, b, size_b, c, size_c, size_d);
 
         if (d != NULL) {
@@ -467,18 +464,14 @@ void printf_all_arrays() {
             printf("\nМассив c:\n\n");
             put_elements(c, size_c);
 
-            // Итоговая информация
             printf("\n======================================================================\n");
 
-            
-                printf("ИТОГИ:\n");
+            printf("ИТОГИ:\n");
             printf("Размер массива a: %d элементов\n", size_a);
             printf("Размер массива b: %d элементов\n", size_b);
             printf("Размер массива c: %d элементов\n", size_c);
             printf("Размер массива d: %d элементов\n", size_d);
             printf("======================================================================\n");
-
-            // Освобождаем память массива d
             free(d);
         }
     }
@@ -486,7 +479,6 @@ void printf_all_arrays() {
         printf("\nОшибка при создании одного из массивов a, b, c!\n");
     }
 
-    // Освобождаем память массивов a, b, c
     if (a != NULL) free(a);
     if (b != NULL) free(b);
     if (c != NULL) free(c);
