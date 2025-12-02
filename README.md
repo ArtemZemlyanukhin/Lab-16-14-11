@@ -38,9 +38,26 @@
   - `ptr_array` - указатель на массив
   - `size` - размер массива
 - **Возвращает**: указатель на заполненный массив
-- ### 2. `int put_elements(double* ptr_array, int size);`
+- ### 3. `int put_elements(double* ptr_array, int size);`
 - **Назначение**: вывод на экран элементов массива
 - **Параметры**: 
   - `ptr_array` - указатель на массив
   - `size` - размер массива
 - **Возвращает**: указатель на заполненный массив
+- ### 4. `int delete_k(double* ptr_arr, int size, int k, int count);
+- ### 5. `double* insert(double* ptr_arr, int* size, int index, double num);`
+- ### 6. `double* insert_after_min_k(double* ptr_arr, int* size, int k, double num);`
+- ### 7. `int find_min_index(double* ptr_arr, int size);`
+- ### 8. `double task_14(int size);`
+- ### 9. `task_for_lab11(int size);`
+- ### 10. `double* create_random_array(int* size);`
+- ### 11. `double* create_d_array(double* a, int size_a, double* b, int size_b, double* c, int size_c, int size_d);`
+- ### 12. `void printf_all_arrays();`
+
+
+
+
+
+
+
+
