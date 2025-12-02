@@ -45,14 +45,24 @@
   - `size` - размер массива
 - **Возвращает**: указатель на заполненный массив
 - ### 4. `int delete_k(double* ptr_arr, int size, int k, int count);
+- **Назначение**-удаление некоторого количества элементов массива
 - ### 5. `double* insert(double* ptr_arr, int* size, int index, double num);`
+- **Назначение**-
 - ### 6. `double* insert_after_min_k(double* ptr_arr, int* size, int k, double num);`
+- **Назначение**-вставка -999 после минимального числа массива
 - ### 7. `int find_min_index(double* ptr_arr, int size);`
+- **Назначение**-поиск индекса с наименьшим числом
 - ### 8. `double task_14(int size);`
+- **Назначение**-Поиск порядкового номера минимального значения элементов,
+больших заданного значения А
 - ### 9. `task_for_lab11(int size);`
+- **Назначение**-Среднее арифметическое элементов массива, расположенных
+между первым и вторым отрицательными элементами
 - ### 10. `double* create_random_array(int* size);`
+- **Назначение**-формирование массива d
 - ### 11. `double* create_d_array(double* a, int size_a, double* b, int size_b, double* c, int size_c, int size_d);`
 - ### 12. `void printf_all_arrays();`
+- **Назначение**-вывод массивов d,a,b,c
 
 
 
