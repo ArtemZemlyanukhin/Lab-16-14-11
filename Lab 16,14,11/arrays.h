@@ -7,6 +7,12 @@ struct Date {
     int month;
     int year;
 };
+/**
+/* Хранение даты дня рождения
+/* @param day - день
+/* @param month - месяц
+/* @param year - год
+ /*/
 //структура заполнения данных сотружника
 struct Employee {
     char lastName[50];
@@ -16,12 +22,26 @@ struct Employee {
     double salary;
     struct Date birthDate;
 };
+/**
+/* Хранение данных о сотруднике
+/* @param lastName - Фамилия
+/* @param firstName - Имя
+/* @param middleName - Отчество
+/* @param position - должность
+/* @param salary - зарплата
+/* @param birthDate - день рождения
+ /*/
 
 //Структура хранения массива с размером
 struct ArrayData {
     double* data;
     int size;
 };
+/**
+/* Хранение массива и его размера
+/* @param data - указатель на массив
+/* @param size - размер массива
+ /*/
 
 //функции для лабораторной 16
 double* full_elements(double* ptr_array, int size);
@@ -143,3 +163,4 @@ int append_into_file(char* fname, struct Employee employees[], int cnt);
  /* @return 1 при успешной записи, 0 при ошибке
  /*/
 #endif
+
