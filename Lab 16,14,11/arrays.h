@@ -1,36 +1,6 @@
 #pragma once
 #ifndef ARRAYS_H
 #define ARRAYS_H
-//структура дня рождения
-struct Date {
-    int day;
-    int month;
-    int year;
-};
-/**
-/* Хранение даты дня рождения
-/* @param day - день
-/* @param month - месяц
-/* @param year - год
- /*/
-//структура заполнения данных сотружника
-struct Employee {
-    char lastName[50];
-    char firstName[50];
-    char middleName[50];
-    char position[50];
-    double salary;
-    struct Date birthDate;
-};
-/**
-/* Хранение данных о сотруднике
-/* @param lastName - Фамилия
-/* @param firstName - Имя
-/* @param middleName - Отчество
-/* @param position - должность
-/* @param salary - зарплата
-/* @param birthDate - день рождения
- /*/
 
 //Структура хранения массива с размером
 struct ArrayData {
@@ -114,7 +84,44 @@ double task_for_lab11(int size);
  /* @param size размер массива
  /* @return значение среднего арифметического
  /*/
-
+int* full_elements_for17(int* ptrarr, int size);
+/**
+/* Заполнение массива целых чисел по специальной формуле
+ /* @param ptrarr указатель на массив целых чисел
+ /* @param size размер массива
+ /* @return указатель на заполненный массив
+ /*/
+void sort_bubble(int* ptrarr, int n);
+/**
+/* Сортировка массива методом пузырька (Bubble Sort)
+ /* @param ptrarr указатель на массив целых чисел
+ /* @param n размер массива
+ /*/
+void sort_select(int* ptrarr, int n);
+/**
+/* Сортировка массива методом выбора (Selection Sort)
+ /* @param ptrarr указатель на массив целых чисел
+ /* @param n размер массива
+ /*/
+int func(int x);
+/**
+/* Вычисление значения по формуле для заполнения массива
+ /* Для четных x: возвращает x*10*3
+ /* Для нечетных x: возвращает (x*10)^2
+ /* @param x входное значение
+ /* @return вычисленное значение
+ /*/
+void swp(int* ptrarr, int* ptrarr2);
+/**
+/* Обмен значениями двух переменных
+ /* @param ptrarr указатель на первую переменную
+ /* @param ptrarr2 указатель на вторую переменную
+ /*/
+void sort_qwi(int* ptrarr, int n);
+/**
+/* Быстрая сортировка массива (Quick Sort)
+ /* @param ptrarr указатель на массив целых чисел
+ /* @param n размер массива
+ /*/
 #endif
-
 
