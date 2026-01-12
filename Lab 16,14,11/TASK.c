@@ -113,9 +113,6 @@ int main() {
                         if (temp_array == NULL) {
                             printf("Ошибка перевыделения памяти при вставке!\n");
                         }
-                        else if (temp_array == ptr_array) {
-                            printf("Вставка не выполнена из-за ошибки!\n");
-                        }
                         else {
                             ptr_array = temp_array;
                             printf("Массив после вставки имеет %d элементов:\n", new_size);
@@ -303,9 +300,9 @@ int main() {
         break;
     }
     char a;
-    printf("Продолжить ? (Да - любая клавиша, нет - n/N/т)\n");
+    printf("Продолжить ? (Да - любая клавиша, нет - n)\n");
     getchar();
-    if ((a = getchar()) == 'n' || 'N' || 'т') break;
+    if ((a = getchar()) == 'n') break;
 } while (1);
     return 0;
 }
