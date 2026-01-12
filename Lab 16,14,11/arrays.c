@@ -30,7 +30,6 @@ double* calc_elements(double* ptr_array, int size) {
 
     double* new_array = (double*)malloc(size * sizeof(double));
     if (new_array == NULL) {
-        printf("Ошибка выделения памяти для нового массива!\n");
         return NULL;
     }
 
@@ -64,17 +63,7 @@ int put_elements(double* ptr_array, int size) {
 }
 
 int delete_k(double* ptr_arr, int size, int k, int count) {
-    if (ptr_arr == NULL) {
-        return 0;
-    }
-
-    if (k < 0 || k >= size) {
-        printf("Неправильно указан начальный индекс для удаления: %d\n", k);
-        return size;
-    }
-
-    if (count <= 0) {
-        printf("Некорректное количество элементов для удаления: %d\n", count);
+    if (ptr_arr == NULL || k < 0 || k >= size || count <= 0) {
         return size;
     }
 
@@ -109,13 +98,7 @@ int find_min_index(double* ptr_arr, int size) {
 }
 
 double* insert(double* ptr_arr, int* size, int index, double num) {
-    if (ptr_arr == NULL || size == NULL) {
-        printf("Некорректные параметры для вставки!\n");
-        return NULL;
-    }
-
-    if (index < 0 || index > *size) {
-        printf("Некорректный индекс для вставки: %d (размер: %d)\n", index, *size);
+    if (ptr_arr == NULL || size == NULL || index < 0 || index > *size) {
         return ptr_arr;
     }
 
@@ -123,7 +106,6 @@ double* insert(double* ptr_arr, int* size, int index, double num) {
     double* ptr_arr_n = (double*)realloc(ptr_arr, size_n * sizeof(double));
 
     if (ptr_arr_n == NULL) {
-        printf("Ошибка перевыделения памяти!\n");
         return ptr_arr;
     }
 
@@ -138,13 +120,7 @@ double* insert(double* ptr_arr, int* size, int index, double num) {
 }
 
 double* insert_after_min_k(double* ptr_arr, int* size, int k, double num) {
-    if (ptr_arr == NULL || size == NULL || k <= 0) {
-        printf("Некорректные параметры для вставки после каждого k-го элемента!\n");
-        return ptr_arr;
-    }
-
-    if (*size == 0) {
-        printf("Массив пуст, вставка невозможна!\n");
+    if (ptr_arr == NULL || size == NULL || k <= 0 || *size == 0) {
         return ptr_arr;
     }
 
@@ -155,7 +131,6 @@ double* insert_after_min_k(double* ptr_arr, int* size, int k, double num) {
         if ((i + 1) % k == 0) {
             current_array = insert(current_array, &current_size, i + 1, num);
             if (current_array == NULL) {
-                printf("Ошибка при вставке после элемента %d\n", i);
                 return ptr_arr;
             }
         }
@@ -172,7 +147,6 @@ struct ArrayData create_random_array() {
     result.data = (double*)malloc(result.size * sizeof(double));
 
     if (result.data == NULL) {
-        printf("Ошибка выделения памяти для массива!\n");
         result.size = 0;
         return result;
     }
@@ -191,7 +165,6 @@ struct ArrayData create_d_array(struct ArrayData a, struct ArrayData b, struct A
     // Проверка входных данных
     if (a.data == NULL || b.data == NULL || c.data == NULL ||
         a.size <= 0 || b.size <= 0 || c.size <= 0) {
-        printf("Некорректные параметры для создания массива d!\n");
         d.data = NULL;
         d.size = 0;
         return d;
@@ -205,7 +178,6 @@ struct ArrayData create_d_array(struct ArrayData a, struct ArrayData b, struct A
 
     d.data = (double*)malloc(d.size * sizeof(double));
     if (d.data == NULL) {
-        printf("Ошибка выделения памяти для массива d!\n");
         d.size = 0;
         return d;
     }
@@ -226,12 +198,6 @@ struct ArrayData create_d_array(struct ArrayData a, struct ArrayData b, struct A
 }
 
 int printf_all_arrays() {
-    printf("\n======================================================================\n");
-    printf("ДЗ К ЛАБОРАТОРНОЙ 16\n");
-    printf("Создание массивов a, b, c, d\n");
-    printf("Правило: di = max(ai, bi, ci)\n");
-    printf("======================================================================\n\n");
-
     // Создаем массивы a, b, c с использованием структур
     struct ArrayData a = create_random_array();
     if (a.data == NULL) return -1;
@@ -258,7 +224,7 @@ int printf_all_arrays() {
     printf("\nМассив c (размер: %d):\n", c.size);
     put_elements(c.data, c.size);
 
-    // Создаем массив d с использованием структуры (всего 3 параметра!)
+    
     struct ArrayData d = create_d_array(a, b, c);
     if (d.data == NULL) {
         free(a.data);
@@ -280,7 +246,7 @@ int printf_all_arrays() {
     printf("Размер массива d: %d элементов\n", d.size);
     printf("======================================================================\n");
 
-    // Освобождаем память
+    
     free(a.data);
     free(b.data);
     free(c.data);
@@ -359,3 +325,60 @@ double task_for_lab11(int size) {
 }
 
 
+int* full_elements_for17(int* ptrarr, int size) {
+    for (int i = 0; i < size; i++) {
+        ptrarr[i] = func(i);
+    }
+    return ptrarr;
+}
+void sort_bubble(int* ptrarr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (ptrarr[j] > ptrarr[j + 1]) {
+                int temp = ptrarr[j];
+                ptrarr[j] = ptrarr[j + 1];
+                ptrarr[j + 1] = temp;
+            }
+        }
+    }
+}
+void sort_select(int* ptrarr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int imax = i;
+        for (int j = i + 1; j < n; j++) {
+            if (ptrarr[j] < ptrarr[imax]) {
+                imax = j;
+            }
+        }
+        int temp = ptrarr[i];
+        ptrarr[i] = ptrarr[imax];
+        ptrarr[imax] = temp;
+    }
+}
+int func(int x) {
+    double i = (x * 10);
+    if (x % 2) return i * i;
+    else return i * 3;
+}
+void swp(int* ptrarr, int* ptrarr2) {
+    int temp = *ptrarr;
+    *ptrarr = *ptrarr2;
+    *ptrarr2 = temp;
+}
+void sort_qwi(int* ptrarr, int n) {
+    if (n <= 1) return;
+    int mid = ptrarr[n / 2];
+    int left = 0;
+    int right = n - 1;
+    while (left <= right) {
+        while (ptrarr[left] < mid) left++;
+        while (ptrarr[right] > mid) right--;
+        if (left <= right) {
+            swp(ptrarr + left, ptrarr + right);
+            left++;
+            right--;
+        }
+    }
+    sort_qwi(ptrarr + left, n - left);
+    sort_qwi(ptrarr, right + 1);
+}
