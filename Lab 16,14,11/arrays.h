@@ -114,53 +114,7 @@ double task_for_lab11(int size);
  /* @param size размер массива
  /* @return значение среднего арифметического
  /*/
-struct ArrayData create_random_array();
-/**
-/* Создание массива со случайными числами
- /* @param нет
- /* @return структуру ArrayData с случайным массивом
- /*/
-struct ArrayData create_d_array(struct ArrayData a, struct ArrayData b, struct ArrayData c);
-/**
-/* Создание массива d по правилу di=max(ai,bi,ci)
- /* @param a - структура с массивом 
- /* @param b - структура с массивом 
- /* @param c - структура с массивом 
- /* @return структуру ArrayData с массивом d
- /*/
-int printf_all_arrays();
-/**
-/* Вывод массивы a,b,c,d
- /* @param нет
- /* @return 0 при успехе, 1 при ошибке
- /*/
- //функции для лабораторной 19
-int inputEmployee(struct Employee* emp);
-/**
-/* Ввод данных о сотруднике в структуру 
- /* @param emp - указатель на структуру
- /* @return 1 при успехе, 0 при ошибке
- /*/
-int printEmployee(struct Employee* emp);
-/**
-/* Вывод данных о сотруднике на экран
- /* @param emp - указатель на структуру
- /* @return 1 при успехе, 0 при ошибке
- /*/
-int findEmployeesInMay(struct Employee employees[], int count);
-/**
-/* Поиск и вывод сотруднмков, родившихся в мае
- /* @param employees[] - массив сотрудников
- /* @param count - количество сотрудников в массиве
- /* @return количество найденных сотрудников
- /*/
-int append_into_file(char* fname, struct Employee employees[], int cnt);
-/**
-/* Запись в файл данных о сотрудниках, родившихся в мае
-/* @param fname - имя файла
- /* @param employees[] - массив сотрудников
- /* @param count - количество сотрудников 
- /* @return 1 при успешной записи, 0 при ошибке
- /*/
+
 #endif
+
 
