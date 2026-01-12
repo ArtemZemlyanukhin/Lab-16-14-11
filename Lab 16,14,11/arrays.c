@@ -99,14 +99,14 @@ int find_min_index(double* ptr_arr, int size) {
 
 double* insert(double* ptr_arr, int* size, int index, double num) {
     if (ptr_arr == NULL || size == NULL || index < 0 || index > *size) {
-        return ptr_arr;
+        return NULL; 
     }
 
     int size_n = (*size) + 1;
     double* ptr_arr_n = (double*)realloc(ptr_arr, size_n * sizeof(double));
 
     if (ptr_arr_n == NULL) {
-        return ptr_arr;
+        return NULL;  
     }
 
     for (int i = size_n - 1; i > index; i--) {
@@ -116,7 +116,7 @@ double* insert(double* ptr_arr, int* size, int index, double num) {
     ptr_arr_n[index] = num;
     *size = size_n;
 
-    return ptr_arr_n;
+    return ptr_arr_n;  
 }
 
 double* insert_after_min_k(double* ptr_arr, int* size, int k, double num) {
