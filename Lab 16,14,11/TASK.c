@@ -12,14 +12,14 @@
 int main() {
     setlocale(LC_CTYPE, "RUS");
     srand(time(NULL));
-
+    do {
     int choice;
     printf("Выберите задания:\n");
     printf("1 - выполнение лабораторной 16 (не домашняя)\n");
     printf("2 - выполнение домашней работы по лабораторной 16\n");
     printf("3 - выполнение домашней работы к лаб. 14\n");
     printf("4 - выполнение домашней работы к лаб. 11\n");
-    printf("5 - дз к лабораторной 19\n");
+    printf("5 - выполнение сортировки разными способами\n");
     printf("ЗАДАНИЕ №: ");
     scanf("%d", &choice);
 
@@ -51,7 +51,7 @@ int main() {
         double* new_array = calc_elements(ptr_array, size);
         put_elements(new_array, size);
 
-        printf("\n======================================================================\n");
+        printf("\n***********************************************\n");
         printf("УДАЛЕНИЕ ЭЛЕМЕНТОВ\n");
 
         if (size > 0) {
@@ -64,7 +64,7 @@ int main() {
             printf("Массив после удаления:\n");
             put_elements(ptr_array, new_size);
 
-            printf("\n======================================================================\n");
+            printf("\n**************************************************\n");
             printf("ВСТАВКА ЭЛЕМЕНТОВ\n");
 
             if (new_size > 0) {
@@ -127,56 +127,124 @@ int main() {
         }
         break;
     }
-    case 5: {
-        // Лабораторная 19
-        int quantity_of_Employees;
-        char fname[30] = "dz_lab19.txt";
+    case 5:{
+          // Лабораторная 17 - сортировки
+          printf("\n======================================================================\n");
+          printf("ЛАБОРАТОРНАЯ РАБОТА 17 - СОРТИРОВКИ\n");
+          printf("======================================================================\n");
 
-        printf("Введите количество сотрудников (от 5 до 10): ");
-        scanf("%d", &quantity_of_Employees);
+          int size;
+          printf("Введите размер массива для сортировки: ");
+          scanf("%d", &size);
 
-        if (quantity_of_Employees < 5 || quantity_of_Employees > 10) {
-            printf("Ошибка! Введите число от 5 до 10.\n");
-            return 1;
-        }
+          if (size <= 0) {
+              printf("Некорректный размер массива! Должен быть больше 0\n");
+              break;
+          }
 
-        struct Employee* employees = (struct Employee*)malloc(quantity_of_Employees * sizeof(struct Employee));
-        if (employees == NULL) {
-            printf("Ошибка выделения памяти!\n");
-            return 1;
-        }
+          // Создаем массив
+          int* array = (int*)malloc(size * sizeof(int));
+          if (array == NULL) {
+              printf("Ошибка выделения памяти!\n");
+              break;
+          }
 
-        for (int i = 0; i < quantity_of_Employees; i++) {
-            printf("\nСотрудник №%d:\n", i + 1);
-            int result = inputEmployee(&employees[i]);
-            if (result != 1) {
-                printf("Ошибка ввода данных сотрудника %d!\n", i + 1);
-                free(employees);
-                return 1;
-            }
-        }
+          // Заполняем массив
+          array = full_elements_for17(array, size);
 
-        int found = findEmployeesInMay(employees, quantity_of_Employees);
-        if (found == 0) {
-            printf("Сотрудников, родившихся в мае, не найдено.\n");
-        }
+          /*printf("\nИсходный массив:\n");
+          for (int i = 0; i < size; i++) {
+              printf("[%d] = %d\n", i, array[i]);
+          }*/
 
-        int file_result = append_into_file(fname, employees, quantity_of_Employees);
-        if (file_result == 1) {
-            printf("Данные успешно записаны в файл %s\n", fname);
-        }
-        else {
-            printf("Ошибка записи в файл!\n");
-        }
+          // Выбираем тип сортировки
+          int sort_choice;
+          printf("\nВыберите тип сортировки:\n");
+          printf("1 - Сортировка пузырьком (Bubble Sort)\n");
+          printf("2 - Сортировка выбором (Selection Sort)\n");
+          printf("3 - Быстрая сортировка (Quick Sort)\n");
+          printf("Выбор: ");
+          scanf("%d", &sort_choice);
 
-        free(employees);
-        break;
+          clock_t start_time, end_time;
+          double time_taken;
+
+          // Создаем копию массива для сортировки
+          int* array_copy = (int*)malloc(size * sizeof(int));
+          if (array_copy == NULL) {
+              printf("Ошибка выделения памяти для копии массива!\n");
+              free(array);
+              break;
+          }
+
+          // Копируем массив вручную (без memcpy)
+          for (int i = 0; i < size; i++) {
+              array_copy[i] = array[i];
+          }
+
+          switch (sort_choice) {
+          case 1: {
+              printf("\n--- СОРТИРОВКА ПУЗЫРЬКОМ ---\n");
+              start_time = clock();
+              sort_bubble(array_copy, size);
+              end_time = clock();
+              time_taken = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+
+              /*printf("Отсортированный массив:\n");
+              for (int i = 0; i < size; i++) {
+                  printf("[%d] = %d\n", i, array_copy[i]);
+              }*/
+              printf("Время выполнения: %.6f секунд\n", time_taken);
+              break;
+          }
+          case 2: {
+              printf("\n--- СОРТИРОВКА ВЫБОРОМ ---\n");
+              start_time = clock();
+              sort_select(array_copy, size);
+              end_time = clock();
+              time_taken = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+
+              /*printf("Отсортированный массив:\n");
+              for (int i = 0; i < size; i++) {
+                  printf("[%d] = %d\n", i, array_copy[i]);
+              }*/
+              printf("Время выполнения: %.6f секунд\n", time_taken);
+              break;
+          }
+          case 3: {
+              printf("\n--- БЫСТРАЯ СОРТИРОВКА ---\n");
+              start_time = clock();
+              sort_qwi(array_copy, size);
+              end_time = clock();
+              time_taken = ((double)(end_time - start_time)) / CLOCKS_PER_SEC;
+
+              /*printf("Отсортированный массив:\n");
+              for (int i = 0; i < size; i++) {
+                  printf("[%d] = %d\n", i, array_copy[i]);
+              }*/
+              printf("Время выполнения: %.6f секунд\n", time_taken);
+              break;
+          }
+          default:
+              printf("Неверный выбор сортировки!\n");
+              break;
+          }
+
+          // Освобождаем память
+          free(array);
+          free(array_copy);
+
+          printf("\n======================================================================\n");
+          break;
     }
     default:
         printf("Такого задания нет!\n");
         break;
     }
-
+    char a;
+    printf("Продолжить ? (Да - любая клавиша, нет - n)\n");
+    getchar();
+    if ((a = getchar()) == 'n') break;
+    } while (1);
     return 0;
 }
-
