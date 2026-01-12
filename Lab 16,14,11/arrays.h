@@ -69,7 +69,24 @@ int find_min_index(double* ptr_arr, int size);
  /* @param size размер массива
  /* @return -1,если массив пустой, либо число int-индекс минимального эл-та массива
  /*/
-
+struct ArrayData create_random_array();
+/**
+/* Создание случайного массива чисел с плавающей точкой
+ /* @return структура ArrayData с созданным массивом и его размером
+ /*/
+struct ArrayData create_d_array(struct ArrayData a, struct ArrayData b, struct ArrayData c);
+/**
+/* Создание массива d по правилу: di = max(ai, bi, ci)
+ /* @param a первый массив-источник
+ /* @param b второй массив-источник
+ /* @param c третий массив-источник
+ /* @return структура ArrayData с созданным массивом d и его размером
+ /*/
+int printf_all_arrays();
+/**
+/* Выполнение домашнего задания к лабораторной работе 16
+ /* @return 0 при успешном выполнении, -1 при ошибке выделения памяти
+ /*/
  //функция для лабораторной 14 
 double task_14(int size,int A);
 /**
